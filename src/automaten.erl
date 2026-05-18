@@ -1,0 +1,3 @@
+-module(automaten).
+
+-export([]).
