@@ -1,0 +1,8 @@
+@startuml 
+
+component AutomatenBuilder as Builder
+component AutomatenEngine as Engine
+
+Builder --> Engine
+
+@enduml
