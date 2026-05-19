@@ -1,0 +1,45 @@
+@startuml
+
+start
+
+floating note
+Fehler Legende
+ID 1 = Kein folgezustand gefunden bei derzeitgen Zustand und Zeichen
+end note
+
+floating note
+Zeichen Legende
+FS = StartState des Automaten
+CS = Current State
+Z = Zeichenkette
+CC = curentChar
+TRA = Transitions von dem Automaten
+NS = NextState von einer Transition
+ES = EndState
+end note
+
+
+
+:CS = FS;
+
+while (notEmpty(Z)) is (yes)
+:CC = firstChar(Z);
+
+if (TRA has for CS and CC) then (yes)
+:CS = NS from TRA witch CS and CC;
+else (no)
+-> return Fehler: ID 1;
+end
+endif
+
+endwhile (no)
+
+if (CS is ES) then (yes)
+:;
+else (no)
+-> return false;
+stop
+endif
+-> return true 
+stop 
+@enduml
