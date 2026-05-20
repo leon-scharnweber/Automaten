@@ -12,4 +12,4 @@
 
 
 {suites, 'DEA', all}.
-{skip_cases, 'DEA', einfacherDEATest_SUITE, [tf03, tf04, tf05, tf06, tf07], "Not Implemented"}.
+{skip_cases, 'DEA', deaEngineTest_SUITE, [tf03, tf04, tf05, tf06, tf07], "Not Implemented"}.

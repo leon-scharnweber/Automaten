@@ -1,56 +1,14 @@
--module(einfacherDEATest_SUITE).
+-module(deaValidateTest_SUITE).
 -export([all/0, init_per_suite/1, end_per_suite/1]).
 -export([
-    tf01/1,
-    tf02/1,
-    tf03/1,
-    tf04/1,
-    tf05/1,
-    tf06/1,
-    tf07/1,
-    tf08/1,
-    tf09/1,
-    tf10/1
+    tf03/1, tf04/1, tf05/1, tf06/1, tf07/1, tf08/1, tf09/1, tf10/1
 ]).
 
 -define(value(Key, Config), proplists:get_value(Key, Config)).
 
-all() ->
-    [tf01, tf02, tf03, tf04, tf05, tf06, tf07, tf08, tf09, tf10].
+all() -> [tf03, tf04, tf05, tf06, tf07, tf08, tf09, tf10].
 
 init_per_suite(Config) ->
-    DEA01 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, true}, {b, true}, {c, false}],
-        % Alpabet
-        ["a", "b", "c"],
-        % Zustandsübergänge
-        [
-            {a, "a", a},
-            {a, "b", b},
-            {a, "c", c},
-            {b, "a", a},
-            {b, "b", b},
-            {b, "c", c},
-            {c, "a", a},
-            {c, "b", b},
-            {c, "c", c}
-        ],
-        % Startzustand
-        a
-    },
-    DEA02 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, true}],
-        % Alpabet
-        ["a"],
-        % Zustandsübergänge
-        [
-            {a, "a", a}
-        ],
-        % Startzustand
-        a
-    },
     DEA03 = {
         % Zustände und ob sie end Zustände sind
         [],
@@ -181,8 +139,6 @@ init_per_suite(Config) ->
         % Startzustand
         a
     },
-    String01 = "abbab",
-    String02 = "",
     String03 = "abbab",
     String04 = "abbab",
     String05 = "abbab",
@@ -192,8 +148,6 @@ init_per_suite(Config) ->
     String09 = "abbab",
     String10 = "abcbcab",
     [
-        {dea01, DEA01},
-        {dea02, DEA02},
         {dea03, DEA03},
         {dea04, DEA04},
         {dea05, DEA05},
@@ -202,8 +156,6 @@ init_per_suite(Config) ->
         {dea08, DEA08},
         {dea09, DEA09},
         {dea10, DEA10},
-        {string01, String01},
-        {string02, String02},
         {string03, String03},
         {string04, String04},
         {string05, String05},
@@ -217,14 +169,6 @@ init_per_suite(Config) ->
 
 end_per_suite(_Config) -> ok.
 
-tf01(ConfigData) ->
-    DEA = ?value(dea01, ConfigData),
-    Zeichenkette = ?value(string01, ConfigData),
-    ok = engine:check(Zeichenkette, DEA).
-tf02(ConfigData) ->
-    DEA = ?value(dea02, ConfigData),
-    Zeichenkette = ?value(string02, ConfigData),
-    ok = engine:check(Zeichenkette, DEA).
 tf03(ConfigData) ->
     DEA = ?value(dea03, ConfigData),
     Zeichenkette = ?value(string03, ConfigData),
