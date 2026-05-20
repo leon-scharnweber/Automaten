@@ -2,7 +2,9 @@
 
 component AutomatenBuilder as Builder
 component AutomatenEngine as Engine
+component AutomatenValidater as Valid
 
-Builder --> Engine
+Builder --> Valid 
+Valid --> Engine
 
 @enduml
