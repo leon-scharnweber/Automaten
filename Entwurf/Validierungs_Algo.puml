@@ -1,0 +1,107 @@
+@startuml
+
+title 
+Validierungs Algorithmus für vollständige DEA
+end title
+
+start
+
+floating note
+Legend:
+
+end note
+
+floating note
+Fehler:
+
+end note
+
+while(nicht alle Char durchgegangen) is (yes) 
+note right 
+
+Schleife um zu überprüfne ob das Alpahbet korrekt ist (keine doppelten zeichen) und gleichzeitig zum zählen wie viele Zeichen es gibt
+
+end note
+:currentChar = Alphabet.nextChar();
+if(currentChar seen already) then (yes)
+-> return Fehler ID 1;
+end
+else (no)
+endif
+:seen.add(currentChar);
+:anzahlWichtigerAngeguckter += 1;
+endwhile
+
+
+
+
+
+
+while(nicht alle Zustände durchgangen) is (yes)
+note right 
+
+Schleifen um zu überprüfen ob alle States komplett alle State übergänge habe
+
+
+end note 
+
+
+
+
+:State = Zustände.next();
+
+
+if(State already seen) then (yes)
+
+-> return Fehler ID 2;
+end
+
+else (no)
+
+endif
+
+
+
+while(noch nicht alle Transition angeguckt und anzahlWichtigerAngeguckter < benötigtWichtigerAnzugukenden)
+note 
+
+konkrete Schleife um zu gucken ob der derzeitige State alle Übergänge hat
+
+end note
+
+
+
+:Transition = Transitions.next();
+
+if(startState of Transition == State) then (yes)
+
+:anzahlWichtigerAngeguckter += 1;
+
+if(Transition.char() is not char of Alpahebt) then (yes)
+
+-> return Fehler ID 3;
+end
+
+else (no)
+
+endif
+
+if(Transition.nextState() is not state of States) then (yes)
+
+-> return Fehler ID 4;
+
+end
+else (no)
+endif
+else (no)
+endif
+endwhile
+endwhile
+if(Starzustand is not in States or is more than one) then (yes)
+-> return Fehler ID 5;
+end
+else (no)
+endif
+stop
+
+@enduml
