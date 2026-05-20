@@ -1,0 +1,27 @@
+@startuml
+
+:validierungs des Alphabets;
+if(Validierungs des Alphabet hat Fehler gemeldet) then (yes)
+
+-> return Fehler von Validierung;
+end
+else (no)
+endif
+
+:validierung der Zustände und Zustandsübergänge (es gibt einen Endzustand);
+
+if(Validierung des Zustände und Zustandübergänge hat ein Fehler gemeldet) then (yes)
+
+-> return Fehler von Validierung;
+end
+else (no)
+endif
+
+if(es gibt nur einen Starzustand) then (yes)
+else (no)
+-> return Fehler es gibt mehrere Starzustände;
+end 
+endif
+stop
+
+@enduml
