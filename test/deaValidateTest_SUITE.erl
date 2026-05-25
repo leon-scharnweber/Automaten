@@ -1,5 +1,5 @@
 -module(deaValidateTest_SUITE).
--export([all/0, init_per_suite/1, end_per_suite/1]).
+-export([all/0, init_per_testcase/2, end_per_testcase/2]).
 -export([
     tf03/1, tf04/1, tf05/1, tf06/1, tf07/1, tf08/1, tf09/1, tf10/1
 ]).
@@ -8,196 +8,71 @@
 
 all() -> [tf03, tf04, tf05, tf06, tf07, tf08, tf09, tf10].
 
-init_per_suite(Config) ->
-    DEA03 = {
-        % Zustände und ob sie end Zustände sind
-        [],
-        % Alpabet
-        ["a"],
-        [],
-        % Startzustand
-        []
-    },
-    DEA04 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, false}, {b, false}],
-        % Alpabet
-        ["a", "b", "c"],
-        % Zustandsübergänge
-        [
-            {a, "a", a},
-            {a, "b", b},
-            {a, "c", a},
-            {c, "a", a},
-            {c, "b", b},
-            {c, "c", a}
-        ],
-        % Startzustand
-        a
-    },
-    DEA05 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, false}, {b, true}],
-        % Alpabet
-        [],
-        % Zustandsübergänge
-        [],
-        % Startzustand
-        a
-    },
-    DEA06 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, false}, {b, true}, {c, false}],
-        % Alpabet
-        ["a", "b", "c"],
-        % Zustandsübergänge
-        [
-            {a, "a", a},
-            {a, "b", b},
-            {a, "c", c},
-            {b, "a", a},
-            {b, "b", b},
-            {b, "c", c},
-            {c, "a", a},
-            {c, "b", b},
-            {c, "c", c}
-        ],
-        % Startzustand
-        []
-    },
-    DEA07 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, false}, {b, true}, {c, false}],
-        % Alpabet
-        ["a", "b", "c"],
-        % Zustandsübergänge
-        [
-            {a, "a", a},
-            {a, "b", b},
-            {a, "c", c},
-            {b, "a", a},
-            {b, "b", b},
-            {b, "c", c},
-            {c, "a", a},
-            {c, "b", b},
-            {c, "c", c}
-        ],
-        % Startzustand
-        [a, b]
-    },
-    DEA08 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, false}, {b, true}, {c, false}],
-        % Alpabet
-        ["a", "b", "c"],
-        % Zustandsübergänge
-        [
-            {a, "b", b},
-            {a, "c", c},
-            {b, "a", a},
-            {b, "b", b},
-            {b, "c", c},
-            {c, "a", a}
-        ],
-        % Startzustand
-        a
-    },
-    DEA09 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, false}, {b, true}, {c, false}],
-        % Alpabet
-        ["a", "b", "c"],
-        % Zustandsübergänge
-        [
-            {a, "b", b},
-            {a, "c", c},
-            {b, "a", a},
-            {b, "b", b},
-            {b, "c", c},
-            {c, "b", b}
-        ],
-        % Startzustand
-        a
-    },
-    DEA10 = {
-        % Zustände und ob sie end Zustände sind
-        [{a, false}, {b, true}, {c, false}],
-        % Alpabet
-        ["a", "b", "c"],
-        % Zustandsübergänge
-        [
-            {a, "a", a},
-            {a, "b", c},
-            {a, "c", c},
-            {b, "a", a},
-            {b, "b", b},
-            {b, "c", c},
-            {c, "a", a},
-            {c, "b", a},
-            {c, "c", c}
-        ],
-        % Startzustand
-        a
-    },
-    String03 = "abbab",
-    String04 = "abbab",
-    String05 = "abbab",
-    String06 = "abbab",
-    String07 = "abbab",
-    String08 = "bbab",
-    String09 = "abbab",
-    String10 = "abcbcab",
-    [
-        {dea03, DEA03},
-        {dea04, DEA04},
-        {dea05, DEA05},
-        {dea06, DEA06},
-        {dea07, DEA07},
-        {dea08, DEA08},
-        {dea09, DEA09},
-        {dea10, DEA10},
-        {string03, String03},
-        {string04, String04},
-        {string05, String05},
-        {string06, String06},
-        {string07, String07},
-        {string08, String08},
-        {string09, String09},
-        {string10, String10}
-        | Config
-    ].
+init_per_testcase(tf03, Config) ->
+    String = "abbab",
+    DEA = ct:get_config(dea03),
+    [{string, String}, {dea, DEA} | Config];
+init_per_testcase(tf04, Config) ->
+    String = "abbab",
+    DEA = ct:get_config(dea04),
+    [{string, String}, {dea, DEA} | Config];
+init_per_testcase(tf05, Config) ->
+    String = "abbab",
+    DEA = ct:get_config(dea05),
+    [{string, String}, {dea, DEA} | Config];
+init_per_testcase(tf06, Config) ->
+    String = "abbab",
+    DEA = ct:get_config(dea06),
+    [{string, String}, {dea, DEA} | Config];
+init_per_testcase(tf07, Config) ->
+    String = "abbab",
+    DEA = ct:get_config(dea07),
+    [{string, String}, {dea, DEA} | Config];
+init_per_testcase(tf08, Config) ->
+    String = "bbab",
+    DEA = ct:get_config(dea08),
+    [{string, String}, {dea, DEA} | Config];
+init_per_testcase(tf09, Config) ->
+    String = "abbab",
+    DEA = ct:get_config(dea09),
+    [{string, String}, {dea, DEA} | Config];
+init_per_testcase(tf10, Config) ->
+    String = "abcbcab",
+    DEA = ct:get_config(dea10),
+    [{string, String}, {dea, DEA} | Config].
 
-end_per_suite(_Config) -> ok.
+end_per_testcase(_, _Config) ->
+    ok.
 
 tf03(ConfigData) ->
-    DEA = ?value(dea03, ConfigData),
-    Zeichenkette = ?value(string03, ConfigData),
+    DEA = ?value(dea, ConfigData),
+    Zeichenkette = ?value(string, ConfigData),
     {error} = engine:check(Zeichenkette, DEA).
 tf04(ConfigData) ->
-    DEA = ?value(dea04, ConfigData),
-    Zeichenkette = ?value(string04, ConfigData),
+    DEA = ?value(dea, ConfigData),
+    Zeichenkette = ?value(string, ConfigData),
     {error} = engine:check(Zeichenkette, DEA).
 tf05(ConfigData) ->
-    DEA = ?value(dea05, ConfigData),
-    Zeichenkette = ?value(string05, ConfigData),
+    DEA = ?value(dea, ConfigData),
+    Zeichenkette = ?value(string, ConfigData),
     {error} = engine:check(Zeichenkette, DEA).
 tf06(ConfigData) ->
-    DEA = ?value(dea07, ConfigData),
-    Zeichenkette = ?value(string07, ConfigData),
+    DEA = ?value(dea, ConfigData),
+    Zeichenkette = ?value(string, ConfigData),
     {error} = engine:check(Zeichenkette, DEA).
 tf07(ConfigData) ->
-    DEA = ?value(dea07, ConfigData),
-    Zeichenkette = ?value(string07, ConfigData),
+    DEA = ?value(dea, ConfigData),
+    Zeichenkette = ?value(string, ConfigData),
     {error} = engine:check(Zeichenkette, DEA).
 tf08(ConfigData) ->
-    DEA = ?value(dea08, ConfigData),
-    Zeichenkette = ?value(string08, ConfigData),
+    DEA = ?value(dea, ConfigData),
+    Zeichenkette = ?value(string, ConfigData),
     ok = engine:check(Zeichenkette, DEA).
 tf09(ConfigData) ->
-    DEA = ?value(dea09, ConfigData),
-    Zeichenkette = ?value(string09, ConfigData),
+    DEA = ?value(dea, ConfigData),
+    Zeichenkette = ?value(string, ConfigData),
     {error, "Found no Transition"} = engine:check(Zeichenkette, DEA).
 tf10(ConfigData) ->
-    DEA = ?value(dea10, ConfigData),
-    Zeichenkette = ?value(string10, ConfigData),
+    DEA = ?value(dea, ConfigData),
+    Zeichenkette = ?value(string, ConfigData),
     {error, "Ended in an not Endstate"} = engine:check(Zeichenkette, DEA).
