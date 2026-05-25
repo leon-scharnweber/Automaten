@@ -8,8 +8,8 @@
 
 {logdir, "'Top'/test/logs"}.
 
-{config, 'ConfigDir', ["config.cfg"]}.
+{config, 'ConfigDir', ["deaDefinition.cfg"]}.
 
 
 {suites, 'DEA', all}.
-{skip_cases, 'DEA', deaEngineTest_SUITE, [tf03, tf04, tf05, tf06, tf07], "Not Implemented"}.
+{skip_suites, 'DEA', deaValidateTest_SUITE, "Not Implemented"}.
