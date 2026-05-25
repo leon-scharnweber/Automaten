@@ -21,7 +21,7 @@ init_per_testcase(tf02, Config) ->
     [{string, String}, {dea, DEA} | Config];
 init_per_testcase(tf08, Config) ->
     String = "bbab",
-    DEA = ct:get_config(dea03),
+    DEA = ct:get_config(dea08),
     [{string, String}, {dea, DEA} | Config].
 
 end_per_testcase(_, _Config) ->
